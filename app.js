@@ -1,23 +1,29 @@
 require("dotenv").config({ path: "./config/config.env" });
 require("./config/db")();
 const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
+const { createServer } = require("http");
+
+const { graphqlExpress, graphiqlExpress } = require("graphql-server-express");
 
 const schema = require("./graphql/schema");
-const rootValue = require("./graphql/queries/index");
 
 const app = express();
+app.use(express.json());
 app.use(
   "/graphql",
-  graphqlHTTP((req, res, gql) => {
-    return {
-      schema,
-      rootValue,
-      graphiql: true,
-      pretty: true,
-    };
+  graphqlExpress({
+    schema,
   })
 );
 
+app.use(
+  "/graphiql",
+  graphiqlExpress({
+    endpointURL: "/graphql",
+  })
+);
+
+const server = createServer(app);
+
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server up on port ${port}...`));
+server.listen(port, () => console.log(`Server up on port ${port}...`));

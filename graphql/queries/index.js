@@ -1,5 +1,7 @@
-const Event = require("./event");
+const event = require("./event");
+const listEvents = require("./listEvents");
 
 module.exports = {
-  Event,
+  event,
+  listEvents,
 };

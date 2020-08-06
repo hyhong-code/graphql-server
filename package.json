@@ -15,7 +15,10 @@
     "express": "^4.17.1",
     "express-graphql": "^0.11.0",
     "graphql": "^15.3.0",
-    "mongoose": "^5.9.27"
+    "graphql-server-express": "^1.4.1",
+    "graphql-subscriptions": "^1.1.0",
+    "mongoose": "^5.9.27",
+    "subscriptions-transport-ws": "^0.9.17"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
