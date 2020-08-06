@@ -9,12 +9,14 @@ const rootValue = require("./graphql/queries/index");
 const app = express();
 app.use(
   "/graphql",
-  graphqlHTTP((req, res, gql) => ({
-    schema,
-    rootValue,
-    graphiql: true,
-    pretty: true,
-  }))
+  graphqlHTTP((req, res, gql) => {
+    return {
+      schema,
+      rootValue,
+      graphiql: true,
+      pretty: true,
+    };
+  })
 );
 
 const port = process.env.PORT || 5000;
